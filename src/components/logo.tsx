@@ -2,29 +2,55 @@ import { cn } from "@/lib/utils";
 
 const BisLogo = ({ className }: { className?: string }) => (
   <svg
-    className={cn("w-12 h-12", className)}
-    viewBox="0 0 100 100"
+    className={cn("w-20 h-20", className)}
+    viewBox="0 0 80 80"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="50" cy="50" r="48" fill="hsl(var(--primary))" />
+    <circle cx="40" cy="40" r="40" fill="hsl(var(--primary))" />
+    <text
+      x="50%"
+      y="50%"
+      dominantBaseline="central"
+      textAnchor="middle"
+      fill="white"
+      className="text-3xl font-bold"
+    >
+      BIS
+    </text>
+  </svg>
+);
+
+export const AiLogo = ({ className }: { className?: string }) => (
+  <svg
+    width="48"
+    height="48"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
     <path
-      d="M50 10C27.9086 10 10 27.9086 10 50C10 72.0914 27.9086 90 50 90C72.0914 90 90 72.0914 90 50"
-      stroke="hsl(var(--accent))"
-      strokeWidth="8"
+      d="M24 6L8 42H14.5L17.5 34H30.5L33.5 42H40L24 6ZM19.5 28L24 16L28.5 28H19.5Z"
+      fill="hsl(var(--primary))"
     />
-    <path d="M30 50H70" stroke="white" strokeWidth="8" strokeLinecap="round" />
-    <path d="M50 30V70" stroke="white" strokeWidth="8" strokeLinecap="round" />
+    <path
+      d="M30.5 34H32.5L31.5 36.5H29.5L30.5 34Z"
+      fill="hsl(var(--accent))"
+    />
+    <path d="M28.5 38H30.5L29.5 40.5H27.5L28.5 38Z" fill="hsl(var(--accent))" />
+    <path d="M26.5 34H28.5L27.5 36.5H25.5L26.5 34Z" fill="hsl(var(--accent))" />
+    <path d="M24.5 38H26.5L25.5 40.5H23.5L24.5 38Z" fill="hsl(var(--accent))" />
+    <path d="M22.5 34H24.5L23.5 36.5H21.5L22.5 34Z" fill="hsl(var(--accent))" />
+    <path d="M20.5 38H22.5L21.5 40.5H19.5L20.5 38Z" fill="hsl(var(--accent))" />
+    <path d="M18.5 34H20.5L19.5 36.5H17.5L18.5 34Z" fill="hsl(var(--accent))" />
   </svg>
 );
 
 export const AppLogo = ({ className }: { className?: string }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <BisLogo className="w-10 h-10" />
-      <span className="text-xl font-bold tracking-tight text-primary">
-        BIS Smart Checker
-      </span>
+      <BisLogo />
     </div>
   );
 };
