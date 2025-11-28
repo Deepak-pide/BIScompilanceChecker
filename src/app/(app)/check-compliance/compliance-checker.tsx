@@ -55,6 +55,27 @@ const exampleProducts = [
     description:
       "A set of colorful building blocks for children aged 3 and up. Made from non-toxic, lead-free ABS plastic. No sharp edges. Complies with toy safety standards for physical and mechanical properties.",
   },
+  {
+    value: "cement",
+    label: "Cement",
+    name: "BuildStrong OPC 33 Cement",
+    description:
+      "Ordinary Portland Cement, 33 Grade. Suitable for general construction purposes. Setting time: Initial 30 mins, Final 600 mins. Compressive strength meets IS 269 standards.",
+  },
+  {
+    value: "water",
+    label: "Packaged Water",
+    name: "AquaPure Packaged Drinking Water",
+    description:
+      "1-liter packaged drinking water bottle. pH value: 7.2. Total Dissolved Solids (TDS): 150 mg/L. Treated through reverse osmosis and UV sterilization. Packaged in a sealed, tamper-proof PET bottle.",
+  },
+  {
+    value: "led",
+    label: "LED Bulb",
+    name: "BrightGlow 9W LED Bulb",
+    description:
+      "A 9-watt self-ballasted LED lamp for general lighting. Luminous efficacy: 90 lm/W. Color Rendering Index (CRI): >80. Rated voltage: 220-240V AC. Lifespan: 15,000 hours.",
+  },
 ];
 
 export function ComplianceChecker() {
@@ -207,7 +228,7 @@ export function ComplianceChecker() {
             <Textarea
               id="description"
               name="description"
-              placeholder="e.g. Polycarbonate shell, 5V-2A output, non-toxic paint..."
+              placeholder="Provide as much detail as possible about your product, including materials, features, ratings, and any existing certifications."
               required
               rows={5}
               value={description}
