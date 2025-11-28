@@ -144,10 +144,15 @@ export function ComplianceChecker() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
+            <p className="text-sm text-muted-foreground">
+              For an accurate compliance analysis, provide details about the
+              product's material, its electrical rating (if applicable), and its
+              key features.
+            </p>
             <Textarea
               id="description"
               name="description"
-              placeholder="Material, rating, features..."
+              placeholder="e.g. Polycarbonate shell, 5V-2A output, non-toxic paint..."
               required
               rows={5}
             />
