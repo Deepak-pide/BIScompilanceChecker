@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { standards } from "@/lib/standards";
+import { useState, useMemo } from "react";
+import { standards, type Standard } from "@/lib/standards";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
@@ -10,12 +10,39 @@ import { ArrowRight, Search as SearchIcon } from "lucide-react";
 export default function SearchStandardPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredStandards = standards.filter(
-    (standard) =>
-      standard.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      standard.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      standard.code.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredAndSortedStandards = useMemo(() => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+    if (!lowerCaseSearchTerm) {
+      // Sort all standards by code when search is empty
+      return [...standards].sort((a, b) => a.code.localeCompare(b.code));
+    }
+
+    const getScore = (standard: Standard): number => {
+      const lowerCode = standard.code.toLowerCase();
+      const lowerTitle = standard.title.toLowerCase();
+      const lowerCategory = standard.category.toLowerCase();
+
+      if (lowerCode === lowerCaseSearchTerm) return 10;
+      if (lowerCode.startsWith(lowerCaseSearchTerm)) return 9;
+      if (lowerCode.includes(lowerCaseSearchTerm)) return 8;
+
+      if (lowerTitle.startsWith(lowerCaseSearchTerm)) return 7;
+      if (lowerTitle.includes(lowerCaseSearchTerm)) return 6;
+      
+      if (lowerCategory.startsWith(lowerCaseSearchTerm)) return 5;
+      if (lowerCategory.includes(lowerCaseSearchTerm)) return 4;
+      
+      return 0;
+    };
+
+    return standards
+      .map(standard => ({ standard, score: getScore(standard) }))
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(item => item.standard);
+
+  }, [searchTerm]);
 
   return (
     <div>
@@ -37,7 +64,7 @@ export default function SearchStandardPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredStandards.map((standard) => (
+        {filteredAndSortedStandards.map((standard) => (
           <Link
             href={`/search-standard/${standard.id}`}
             key={standard.id}
@@ -57,7 +84,7 @@ export default function SearchStandardPage() {
             </Card>
           </Link>
         ))}
-        {filteredStandards.length === 0 && (
+        {filteredAndSortedStandards.length === 0 && (
           <p className="text-muted-foreground col-span-full text-center py-10">
             No standards found for "{searchTerm}".
           </p>
