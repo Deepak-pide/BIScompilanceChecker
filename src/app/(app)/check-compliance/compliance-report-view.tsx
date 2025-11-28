@@ -84,7 +84,7 @@ export function ComplianceReportView({
   return (
     <div className="space-y-6 print-container w-full">
       <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
-        <h2 className="text-2xl font-bold break-words">
+        <h2 className="text-2xl font-bold break-words min-w-0">
           Compliance Report for:{" "}
           <span className="text-primary">{productName}</span>
         </h2>
@@ -209,7 +209,7 @@ export function ComplianceReportView({
                         className="flex items-start p-3 bg-destructive/10 rounded-md"
                       >
                         <XCircle className="text-destructive w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                        <span>{req}</span>
+                        <span className="break-words">{req}</span>
                       </li>
                     ))}
                   </ul>
@@ -242,7 +242,7 @@ export function ComplianceReportView({
                         className="flex items-start p-3 bg-green-500/10 rounded-md"
                       >
                         <CheckCircle2 className="text-green-500 w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                        <span>{req}</span>
+                        <span className="break-words">{req}</span>
                       </li>
                     ))}
                   </ul>
