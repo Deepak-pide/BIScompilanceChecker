@@ -45,7 +45,7 @@ export default function SearchStandardPage() {
   }, [searchTerm]);
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-3xl font-bold mb-2">Search BIS Standard</h1>
       <p className="text-muted-foreground mb-8">
         Enter a product, category, or standard code (e.g., Charger, Cement, IS

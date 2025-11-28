@@ -71,7 +71,7 @@ export default function SavedReportsPage() {
 
   if (!isMounted) {
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 w-full">
             <Card><CardContent className="p-4"><div className="h-16 animate-pulse bg-muted rounded-md"></div></CardContent></Card>
             <Card><CardContent className="p-4"><div className="h-16 animate-pulse bg-muted rounded-md"></div></CardContent></Card>
             <Card><CardContent className="p-4"><div className="h-16 animate-pulse bg-muted rounded-md"></div></CardContent></Card>
@@ -80,7 +80,7 @@ export default function SavedReportsPage() {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-3xl font-bold mb-2">Saved Reports</h1>
       <p className="text-muted-foreground mb-8">
         Review your previously generated compliance reports.

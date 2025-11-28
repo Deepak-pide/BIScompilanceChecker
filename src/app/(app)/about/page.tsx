@@ -25,7 +25,7 @@ const aboutSections = [
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-3xl font-bold mb-8 text-center">
         About BIS and Our Mission
       </h1>

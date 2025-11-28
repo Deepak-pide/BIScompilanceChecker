@@ -17,7 +17,7 @@ export default function StandardDetailsPage({ params }: Props) {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-3xl font-bold mb-8">Standard Details</h1>
       <Card>
         <CardHeader>
