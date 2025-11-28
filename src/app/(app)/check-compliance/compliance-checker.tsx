@@ -100,9 +100,9 @@ export function ComplianceChecker() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     setProductName(formData.get("productName") as string);
-    // This hidden input will carry the file data
-    // The server action can now read it directly from formData.get("fileDataUri")
-
+    if (fileDataUri) {
+      formData.set("fileDataUri", fileDataUri);
+    }
     setIsLoading(true);
     formAction(formData);
   };
@@ -204,11 +204,6 @@ export function ComplianceChecker() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <p className="text-sm text-muted-foreground">
-              For an accurate compliance analysis, provide details about the
-              product's material, its electrical rating (if applicable), and its
-              key features.
-            </p>
             <Textarea
               id="description"
               name="description"
