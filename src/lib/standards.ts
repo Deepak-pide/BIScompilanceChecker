@@ -36,7 +36,7 @@ export const standards: Standard[] = [
     id: "is-9873",
     code: "IS 9873",
     title: "Safety of Toys",
-    category: "Toys Safety",
+    category: "Toys",
     rules: [
       "Part 1: Covers safety aspects related to mechanical and physical properties.",
       "Part 2: Specifies flammability requirements.",
@@ -58,6 +58,60 @@ export const standards: Standard[] = [
       "Labeling must include manufacturer name, size, and year of manufacture.",
       "The materials used must not cause skin irritation.",
       "Total weight of the helmet must be within specified limits.",
+    ],
+  },
+  {
+    id: "is-14543",
+    code: "IS 14543",
+    title: "Packaged Drinking Water (Other than Packaged Natural Mineral Water)",
+    category: "Packaged Water",
+    rules: [
+      "Water must be free from coliform bacteria.",
+      "pH value must be between 6.5 and 8.5.",
+      "Total Dissolved Solids (TDS) should not exceed 500 mg/L.",
+      "Must be packed in clean, hygienic, and tamper-proof bottles.",
+      "Label must include batch number, date of manufacture, and expiry date.",
+    ],
+  },
+  {
+    id: "is-16018",
+    code: "IS 16018",
+    title:
+      "Self-Ballasted LED Lamps for General Lighting Services - Performance Requirements",
+    category: "LED Bulb",
+    rules: [
+      "Luminous efficacy shall not be less than declared value.",
+      "Color Rendering Index (CRI) must be above a certain threshold.",
+      "Lamp life must meet the specified number of burning hours.",
+      "Must pass high voltage and insulation resistance tests.",
+      "Must be clearly marked with rated voltage, wattage, and manufacturer's name.",
+    ],
+  },
+  {
+    id: "is-11601",
+    code: "IS 11601",
+    title: "Skimmed Milk Powder, Standard Grade - Specification",
+    category: "Milk Powder",
+    rules: [
+      "Moisture content must not exceed 4.0 percent by mass.",
+      "Fat content must not exceed 1.5 percent by mass.",
+      "The powder must be free from lumps and scorched particles.",
+      "Must be free from extraneous matter and added preservatives.",
+      "Packaging must be hygienic and protect the product from contamination.",
+    ],
+  },
+  {
+    id: "is-302-2-3",
+    code: "IS 302-2-3",
+    title:
+      "Safety of Household and Similar Electrical Appliances - Part 2-3: Particular Requirements for Electric Irons",
+    category: "Electric Iron",
+    rules: [
+      "The appliance must be protected against electric shock.",
+      "Heating element must be durable and safe.",
+      "Cord anchorage must withstand strain and torsion.",
+      "Thermostat must function correctly to prevent overheating.",
+      "Must be constructed to be mechanically stable and resistant to moisture.",
     ],
   },
 ];
