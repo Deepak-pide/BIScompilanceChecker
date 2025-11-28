@@ -1,9 +1,9 @@
 "use server";
 
 import {
-  generateComplianceReport,
   type GenerateComplianceReportOutput,
 } from "@/ai/flows/generate-compliance-report";
+import { getStandardByCode, standards } from "@/lib/standards";
 import { z } from "zod";
 
 const FormSchema = z.object({
@@ -20,6 +20,51 @@ export type FormState = {
     description?: string[];
   };
 };
+
+function generateDummyReport(productName: string, description: string): GenerateComplianceReportOutput {
+  
+  const productKeywords: {[key: string]: string} = {
+    "helmet": "IS 4151",
+    "charger": "IS 13252",
+    "toy": "IS 9873",
+    "cement": "IS 269",
+    "water": "IS 14543",
+    "led": "IS 16018",
+  };
+  
+  const lowerCaseName = productName.toLowerCase();
+  let standardCode = standards[0].code; // Default to first standard
+
+  for (const keyword in productKeywords) {
+    if (lowerCaseName.includes(keyword)) {
+      standardCode = productKeywords[keyword];
+      break;
+    }
+  }
+
+  const standard = getStandardByCode(standardCode) || standards[0];
+  
+  const totalRules = standard.rules.length;
+  // Make pass/fail count somewhat dependent on description length
+  const passedRules = Math.min(totalRules, Math.floor(description.length / 30));
+  const failedRules = totalRules - passedRules;
+  const complianceScore = Math.round((passedRules / totalRules) * 100);
+
+  const missingRequirements = standard.rules.slice(passedRules);
+
+  return {
+    report: {
+      standardCode: standard.code,
+      productCategory: standard.category,
+      totalRules,
+      passedRules,
+      failedRules,
+      complianceScore,
+      missingRequirements,
+    },
+  };
+}
+
 
 export async function checkComplianceAction(
   prevState: FormState,
@@ -39,7 +84,9 @@ export async function checkComplianceAction(
   }
 
   try {
-    const report = await generateComplianceReport(validatedFields.data);
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    const report = generateDummyReport(validatedFields.data.productName, validatedFields.data.description);
     return { report };
   } catch (e) {
     console.error(e);
