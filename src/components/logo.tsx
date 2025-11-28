@@ -1,24 +1,14 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const BisLogo = ({ className }: { className?: string }) => (
-  <svg
+  <Image
+    src="/BIS.png"
+    alt="BIS Logo"
+    width={80}
+    height={80}
     className={cn("w-20 h-20", className)}
-    viewBox="0 0 80 80"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="40" cy="40" r="40" fill="hsl(var(--primary))" />
-    <text
-      x="50%"
-      y="50%"
-      dominantBaseline="central"
-      textAnchor="middle"
-      fill="white"
-      className="text-3xl font-bold"
-    >
-      BIS
-    </text>
-  </svg>
+  />
 );
 
 export const AiLogo = ({ className }: { className?: string }) => (
