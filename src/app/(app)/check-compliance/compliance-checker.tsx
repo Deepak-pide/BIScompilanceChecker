@@ -16,6 +16,14 @@ import { Loader2, Paperclip, Send, X, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ComplianceReportView } from "./compliance-report-view";
 import type { GenerateComplianceReportOutput } from "@/ai/flows/generate-compliance-report";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 const initialState: FormState = {};
 
@@ -24,6 +32,30 @@ type SavedReport = GenerateComplianceReportOutput & {
   productName: string;
   savedAt: string;
 };
+
+const exampleProducts = [
+  {
+    value: "helmet",
+    label: "Motorcycle Helmet",
+    name: "RiderSafe Pro Helmet",
+    description:
+      "A high-impact polycarbonate shell helmet for motorcycle riders. Features include a multi-density EPS liner, an advanced ventilation system, and a scratch-resistant visor. Certified for safety and comfort.",
+  },
+  {
+    value: "charger",
+    label: "Mobile Charger",
+    name: "QuickCharge 20W Adapter",
+    description:
+      "A 20W USB-C mobile charger. Provides fast charging for compatible devices. Input: 100-240V AC, 50/60Hz. Output: 5V-3A / 9V-2.22A. Made with fire-resistant materials and features over-current protection.",
+  },
+  {
+    value: "toy",
+    label: "Children's Toy",
+    name: "FunBlocks Building Set",
+    description:
+      "A set of colorful building blocks for children aged 3 and up. Made from non-toxic, lead-free ABS plastic. No sharp edges. Complies with toy safety standards for physical and mechanical properties.",
+  },
+];
 
 export function ComplianceChecker() {
   const { toast } = useToast();
@@ -36,6 +68,7 @@ export function ComplianceChecker() {
     null
   );
   const [productName, setProductName] = useState("");
+  const [description, setDescription] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   const [file, setFile] = useState<File | null>(null);
@@ -89,12 +122,21 @@ export function ComplianceChecker() {
     }
   }, [formState, toast]);
 
+  const handleExampleSelect = (value: string) => {
+    const example = exampleProducts.find((p) => p.value === value);
+    if (example) {
+      setProductName(example.name);
+      setDescription(example.description);
+    }
+  };
+  
   const handleGoBack = () => {
     setReport(null);
     formRef.current?.reset();
     setFile(null);
     setFileDataUri(null);
     setProductName("");
+    setDescription("");
   };
 
   const handleSaveReport = (reportToSave: GenerateComplianceReportOutput) => {
@@ -127,7 +169,23 @@ export function ComplianceChecker() {
   return (
     <Card>
       <form ref={formRef} onSubmit={handleFormSubmit}>
-        <CardContent className="pt-6 space-y-4">
+        <CardContent className="pt-6 space-y-6">
+          <div className="space-y-2">
+            <Label>Start with an Example</Label>
+            <Select onValueChange={handleExampleSelect}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a product type..." />
+              </SelectTrigger>
+              <SelectContent>
+                {exampleProducts.map((p) => (
+                  <SelectItem key={p.value} value={p.value}>
+                    {p.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Separator />
           <div className="space-y-2">
             <Label htmlFor="productName">Product Name</Label>
             <Input
@@ -135,6 +193,8 @@ export function ComplianceChecker() {
               name="productName"
               placeholder="e.g., Helmet, Charger, Toy"
               required
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
             />
             {formState?.fieldErrors?.productName && (
               <p className="text-sm text-destructive">
@@ -155,6 +215,8 @@ export function ComplianceChecker() {
               placeholder="e.g. Polycarbonate shell, 5V-2A output, non-toxic paint..."
               required
               rows={5}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
             {formState?.fieldErrors?.description && (
               <p className="text-sm text-destructive">
