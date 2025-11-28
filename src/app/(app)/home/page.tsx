@@ -39,11 +39,11 @@ export default function HomePage() {
   return (
     <div className="w-full flex justify-center">
       <div className="w-full max-w-4xl">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold tracking-tight">
-            Welcome to BIS Smart Checker
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold tracking-tight">
+            BIS Smart Checker
           </h1>
-          <p className="text-lg text-muted-foreground mt-2">
+          <p className="text-md text-muted-foreground mt-2">
             Your AI-powered assistant for navigating Indian standards.
           </p>
         </div>
