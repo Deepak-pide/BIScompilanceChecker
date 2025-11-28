@@ -51,6 +51,10 @@ export default function HomePage() {
           </div>
         </CardContent>
       </Card>
+      <div className="mt-8 text-2xl font-bold">
+        <span style={{ color: 'hsl(var(--primary))' }}>Hack</span>
+        <span style={{ color: 'hsl(var(--accent))' }}>Hustlers</span>
+      </div>
     </div>
   );
 }
