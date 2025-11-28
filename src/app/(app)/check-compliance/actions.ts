@@ -37,6 +37,7 @@ function generateDummyReport(productName: string, description: string): Generate
   const lowerCaseName = productName.toLowerCase();
   let standardCode = standards[0].code; // Default to first standard
 
+  // Find the correct standard code from the keywords
   for (const keyword in productKeywords) {
     if (lowerCaseName.includes(keyword)) {
       standardCode = productKeywords[keyword];
@@ -44,11 +45,28 @@ function generateDummyReport(productName: string, description: string): Generate
     }
   }
 
-  const standard = getStandardByCode(standardCode) || standards[0];
+  // Find the full standard object using the code
+  const standard = getStandardByCode(standardCode);
+
+  if (!standard) {
+    // This is a fallback, but the logic should prevent this
+    const firstStandard = standards[0];
+    return {
+      report: {
+        standardCode: firstStandard.code,
+        productCategory: firstStandard.category,
+        totalRules: 0,
+        passedRules: 0,
+        failedRules: 0,
+        complianceScore: 0,
+        missingRequirements: [],
+      }
+    }
+  }
   
   const totalRules = standard.rules.length;
   // Make pass/fail count somewhat dependent on description length
-  const passedRules = Math.min(totalRules, Math.floor(description.length / 30) + 1);
+  const passedRules = Math.min(totalRules, Math.floor(description.length / 30) + Math.floor(Math.random() * 3));
   const failedRules = totalRules - passedRules;
   const complianceScore = Math.round((passedRules / totalRules) * 100);
 
