@@ -30,6 +30,8 @@ function generateDummyReport(productName: string, description: string): Generate
     "cement": "IS 269",
     "water": "IS 14543",
     "led": "IS 16018",
+    "milk": "IS 11601",
+    "iron": "IS 302-2-3"
   };
   
   const lowerCaseName = productName.toLowerCase();
@@ -46,7 +48,7 @@ function generateDummyReport(productName: string, description: string): Generate
   
   const totalRules = standard.rules.length;
   // Make pass/fail count somewhat dependent on description length
-  const passedRules = Math.min(totalRules, Math.floor(description.length / 30));
+  const passedRules = Math.min(totalRules, Math.floor(description.length / 30) + 1);
   const failedRules = totalRules - passedRules;
   const complianceScore = Math.round((passedRules / totalRules) * 100);
 
