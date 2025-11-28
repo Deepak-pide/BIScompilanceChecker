@@ -100,9 +100,8 @@ export function ComplianceChecker() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     setProductName(formData.get("productName") as string);
-    if (fileDataUri) {
-      formData.append("fileDataUri", fileDataUri);
-    }
+    // This hidden input will carry the file data
+    // The server action can now read it directly from formData.get("fileDataUri")
 
     setIsLoading(true);
     formAction(formData);
@@ -169,6 +168,7 @@ export function ComplianceChecker() {
   return (
     <Card>
       <form ref={formRef} onSubmit={handleFormSubmit}>
+        <input type="hidden" name="fileDataUri" value={fileDataUri || ""} />
         <CardContent className="pt-6 space-y-6">
           <div className="space-y-2">
             <Label>Start with an Example</Label>
