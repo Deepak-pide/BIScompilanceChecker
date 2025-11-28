@@ -4,30 +4,30 @@ const aboutSections = [
   {
     title: "What is BIS?",
     content:
-      "The Bureau of Indian Standards (BIS) is the National Standard Body of India established under the BIS Act 2016 for the harmonious development of the activities of standardization, marking and quality certification of goods and for matters connected therewith or incidental thereto.",
+      "The Bureau of Indian Standards (BIS) is India's official team for making sure products are safe, reliable, and high-quality. Think of them as the nation's quality guardians.",
   },
   {
-    title: "What is a Standard?",
+    title: "Our Mission",
     content:
-      "A standard is a document that provides requirements, specifications, guidelines, or characteristics that can be used consistently to ensure that materials, products, processes, and services are fit for their purpose. BIS standards are crucial for ensuring quality, safety, and reliability.",
+      "Our mission is to make it simple and fast for anyone to check if a product meets the important BIS safety and quality rules. We want to help creators build and sell products that everyone can trust.",
   },
   {
-    title: "Why Certification Matters",
+    title: "How We Help",
     content:
-      "BIS certification is a means of providing third party guarantee of quality, safety and reliability of products to the customer. The certification is voluntary, but the Government of India has made it mandatory for certain products taking into consideration public health.",
+      "Figuring out all the BIS rules can be tough. Our app uses smart AI to do the hard work. It quickly analyzes a product and tells you exactly what passes and what needs to be fixed, making compliance easy.",
   },
   {
-    title: "What Our App Solves",
+    title: "Why It Matters",
     content:
-      "Navigating the complexities of BIS compliance can be challenging. Our app leverages AI to simplify this process, allowing manufacturers and importers to quickly assess their product's compliance, identify gaps, and understand the necessary requirements, fostering a culture of quality and safety.",
+      "When products meet BIS standards, they are safer and more dependable for you and your family. By making compliance easier, we help ensure that more high-quality products make it to the market.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="w-full">
+    <div className="w-full max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-8 text-center">
-        About BIS and Our Mission
+        Our Mission: Simple, Smart, Safe
       </h1>
       <div className="space-y-6">
         {aboutSections.map((section) => (
